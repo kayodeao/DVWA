@@ -10,10 +10,10 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                // Define SonarScanner tool
-                def scannerHome = tool 'SonarScanner';
+                // Define SonarScanner tool and specify its installation name
+                def scannerHome = tool name: 'SonarScanner';
                 // Run SonarScanner analysis
-                withSonarQubeEnv() {
+                withSonarQubeEnv('SonarScanner') {
                     sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=DVWA-Scan2"
                 }
             }
